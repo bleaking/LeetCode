@@ -1,0 +1,54 @@
+class Solution {
+    public int[] plusOne(int[] digits) {
+        if(digits[digits.length-1]!=9){
+            digits[digits.length-1]=digits[digits.length-1]+1;
+            return digits;
+        }
+        int yes=0;
+        int i=digits.length-1;
+        while(i!=-1){
+            if(digits[i]!=9){
+                yes=0;
+                break;
+            }
+            yes=1;
+            i--;
+        }
+        int arr[]=null;
+        int n;
+        if(yes==1){
+            arr=new int[digits.length+1];
+            n=digits.length;
+        }else{
+            arr=new int[digits.length];
+            n=digits.length-1;
+        }
+        i=digits.length-1;
+        //int n=digits.length;
+        arr[n]=0;
+        int carry=1;
+        i--;
+        n--;
+        while(carry==1){
+            if(i==-1){
+                arr[n]=carry;
+            }else{
+                arr[n]=digits[i]+1;
+            }
+            if(arr[n]>9){
+                carry=1;
+                arr[n]=0;
+            }else{
+                carry=0;
+            }
+            i--;
+            n--;
+        }
+        while(n>-1){
+            arr[n]=digits[i];
+            i--;
+            n--;
+        }
+        return arr;
+    }
+}
